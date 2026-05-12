@@ -2,7 +2,6 @@ classDiagram
 
 class 교수 {
     -String 교수id
-
     +교수(String 교수id)
     +교수체크(String 교수id) boolean
 }
@@ -21,7 +20,8 @@ class 성적 {
     +학점조회(String 교수id) void
 }
 
-class add_sungjuk_ui {
+class Add_Sungjuk_UI {
+    <<bound>>
     +main(String[] args) void
 }
 
@@ -30,5 +30,5 @@ class search_sungjuk_ui {
 }
 
 성적 --> 교수 : uses (Dependency)
-add_sungjuk_ui ..> 성적 : uses (Dependency)
+Add_Sungjuk_UI ..> 성적 : uses (Dependency)
 search_sungjuk_ui ..> 성적 : uses (Dependency)

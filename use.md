@@ -1,3 +1,5 @@
+```mermaid
+
 graph TD
     Professor((교수))
 
@@ -12,3 +14,4 @@ graph TD
 
     UC1 -.->|"<<&ltinclude>>"| UC3
     UC2 -.->|"<<&ltinclude>>"| UC3
+```

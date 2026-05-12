@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/plain; charset=UTF-8" pageEncoding="UTF-8"%>
 <%!
-    // [Class Diagram] 교수 클래스
+   
     public class 교수 {
         private String 교수id;
 
@@ -13,11 +13,11 @@
         }
     }
 
-    // [Class Diagram] 성적 클래스
+    
     public class 성적 {
         public String 학생id;
         public int 자바;
-        public int db;
+        public int db;   
         public int 보안;
         public int 총점;
         public double 평균;
@@ -57,23 +57,26 @@
         }
     }
 %>
+
 <%
+   
     교수 inha교수 = new 교수("inha");
     성적 학생성적 = new 성적();
 
-    out.println("========== [정상 케이스: inha] ==========");
+    out.println("성적 관리 시스템 실행 결과");
     
     if (학생성적.성적입력("inha", "STU_2026", 85, 95, 82, inha교수)) {
         out.println("성적 입력 완료");
-        out.println("학생 ID: " + 학생성적.학생id);
-        out.println("총점: " + 학생성적.총점);
+        out.println("-------------------------------------------");
+        out.println("학생 ID : " + 학생성적.학생id);
+        out.println("총점    : " + 학생성적.총점);
         
-        out.println("평균: " + String.format("%.1f", 학생성적.평균));
+        out.println("평균    : " + String.format("%.1f", 학생성적.평균));
     }
 
     if (학생성적.학점조회("inha", inha교수)) {
-        out.println("부여된 학점: " + 학생성적.학점);
+        out.println("최종학점 : " + 학생성적.학점);
     }
-
-  
+    
+    out.println("===========================================");
 %>

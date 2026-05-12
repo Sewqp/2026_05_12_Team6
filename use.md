@@ -1,4 +1,4 @@
-flowchart LR
+```flowchart LR
     Professor((교수))
     
     subgraph "성적 관리 시스템"
@@ -12,3 +12,4 @@ flowchart LR
     
     UC1 -.->|include| UC3
     UC2 -.->|include| UC3
+```

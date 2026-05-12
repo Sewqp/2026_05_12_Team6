@@ -1,17 +1,14 @@
-usecaseDiagram
-
-actor "교수" as Professor
-
-rectangle "성적 관리 시스템" {
-
-    usecase "성적입력" as UC1
-    usecase "학점조회" as UC2
-    usecase "교수체크" as UC3
-
-}
-
-Professor --> UC1
-Professor --> UC2
-
-UC1 ..> UC3 : <<include>>
-UC2 ..> UC3 : <<include>>
+flowchart LR
+    Professor((교수))
+    
+    subgraph "성적 관리 시스템"
+        UC1([성적입력])
+        UC2([학점조회])
+        UC3([교수체크])
+    end
+    
+    Professor --- UC1
+    Professor --- UC2
+    
+    UC1 -.->|include| UC3
+    UC2 -.->|include| UC3

@@ -1,0 +1,140 @@
+교수는 성적입력 한다.
+	- 교수id, 학생id, 성적(자바, DB, 보안)을 입력한다.
+	- 반드시 교수id를 체크한다. (교수id는 "inha")
+	- 총점과 평균을 계산한다.
+교수는 학점조회 한다.
+	- 반드시 교수id를 체크한다.
+	- 학점을 부여한다.(A학저 : 90학점이상, B학점 : 80점이상, C학점 : 80점미만)
+
+모든 명칭은 한글로 : Use Case명, 클래스명, 속성명, 행위명 (데이터타입은 영문)
+GitHub에 Repository 생성하여 산출물 관리 (Repository명 : "SungJuk_B_01팀")
+
+사용사례 다이어그램(Use Case Diagram)을 정의하시오.(Use Case는 "성적입력","학점조회","교수체크"만 있음.)
+클래스 다이어그램(Class Diagram)을 설계하시오. (Class는 "교수(행위:교수체크)", 성적(행위: 성적입력, 학점조회)"와 <<bound>> 클래스 ("Add_Sungjuk_UI")만 있음.)
+순차도(Sequence Diagram)를 설계하시오.(성적입력, 학점조회)
+순차도(Sequence Diagram)를 기반으로 구현하시오.(성적입력, 학점조회)
+실행은 JSP로 실행할 것(입력창은 생성하지 말고 처리 결과만 텍스트로 출력할 것.)
+
+sequenceDiagram
+    autonumber
+
+    participant add_sungjuk_ui
+    participant 성적
+    participant 교수
+
+    add_sungjuk_ui->>성적: 성적입력("inha")
+
+    Note over 성적,교수: <<include>> 교수체크
+
+    성적->>교수: 교수체크("inha")
+    교수-->>성적: check : boolean
+
+    alt 교수 확인 성공
+
+        성적->>성적: 총점 계산
+        성적->>성적: 평균 계산
+
+        성적-->>add_sungjuk_ui: 성적 입력 완료
+
+    else 교수 확인 실패
+
+        성적-->>add_sungjuk_ui: 오류 발생
+
+    end
+--------------------------------------------------------------------------------
+sequenceDiagram
+    autonumber
+
+    participant search_sungjuk_ui
+    participant 성적
+    participant 교수
+
+    search_sungjuk_ui->>성적: 학점조회("inha")
+
+    Note over 성적,교수: <<include>> 교수체크
+
+    성적->>교수: 교수체크("inha")
+    교수-->>성적: check : boolean
+
+    alt 교수 확인 성공
+
+        alt 평균 >= 90
+            성적->>성적: 학점 = "A"
+
+        else 평균 >= 80
+            성적->>성적: 학점 = "B"
+
+        else 평균 < 80
+            성적->>성적: 학점 = "C"
+        end
+
+        성적-->>search_sungjuk_ui: 학점 조회 결과 반환
+
+    else 교수 확인 실패
+
+        성적-->>search_sungjuk_ui: 오류 발생
+
+    end
+
+------------------------------------------------------------
+
+```mermaid
+
+graph TD
+    Professor((교수))
+
+    subgraph "성적 관리 시스템"
+        UC1(성적입력)
+        UC2(학점조회)
+        UC3(교수체크)
+    end
+
+    Professor --- UC1
+    Professor --- UC2
+
+    UC1 -.->|"<<&ltinclude>>"| UC3
+    UC2 -.->|"<<&ltinclude>>"| UC3
+```
+
+------------------------------------------------------------
+
+
+```mermaid
+classDiagram
+
+class 교수 {
+    -String 교수id
+    +교수(String 교수id)
+    +교수체크(String 교수id) boolean
+}
+
+class 성적 {
+    -String 학생id
+    -int 자바
+    -int db
+    -int 보안
+    -int 총점
+    -double 평균
+    -String 학점
+
+    +성적(String 학생id, int 자바, int db, int 보안, 교수 교수)
+    +성적입력(String 교수id, String 학생id, int 자바, int db, int 보안, 교수 교수) boolean
+    +학점조회(String 교수id, 교수 교수) boolean
+}
+
+class Add_Sungjuk_UI {
+    <<boundary>>
+    +main(String[] args)
+}
+
+class search_sungjuk_ui {
+    <<boundary>>
+    +main(String[] args)
+}
+
+성적 --> 교수 : uses (Dependency)
+Add_Sungjuk_UI ..> 성적 : uses (Dependency)
+search_sungjuk_ui ..> 성적 : uses (Dependency)
+```
+
+-----------------------------------------------------------------------

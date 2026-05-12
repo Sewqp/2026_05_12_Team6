@@ -1,15 +1,17 @@
-
-```mermaid
 usecaseDiagram
-    actor "온라인 뱅킹 사용자" as Customer
-    package "온라인 뱅킹 시스템" {
-        usecase "출금" as Withdraw
-        usecase "사용자 조회" as SearchUser
-        usecase "잔액 확인" as CheckBalance
-        usecase "잔액 계산" as ComputeBalance
-    }
-    Customer --> Withdraw
-    Withdraw ..> SearchUser : <<include>>
-    Withdraw ..> CheckBalance : <<include>>
-    Withdraw ..> ComputeBalance : <<include>>
-```
+
+actor "교수" as Professor
+
+rectangle "성적 관리 시스템" {
+
+    usecase "성적입력" as UC1
+    usecase "학점조회" as UC2
+    usecase "교수체크" as UC3
+
+}
+
+Professor --> UC1
+Professor --> UC2
+
+UC1 ..> UC3 : <<include>>
+UC2 ..> UC3 : <<include>>

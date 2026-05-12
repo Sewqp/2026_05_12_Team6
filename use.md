@@ -1,3 +1,4 @@
+```mermaid
 usecaseDiagram
     actor "온라인 뱅킹 사용자" as Customer [cite: 7]
 
@@ -12,3 +13,4 @@ usecaseDiagram
     Withdraw ..> SearchUser : <<include>> [cite: 7]
     Withdraw ..> CheckBalance : <<include>> [cite: 7]
     Withdraw ..> ComputeBalance : <<include>> [cite: 7]
+    ```

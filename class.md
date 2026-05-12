@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 
 class 교수 {
@@ -32,3 +33,4 @@ class search_sungjuk_ui {
 성적 --> 교수 : uses (Dependency) [cite: 6]
 Add_Sungjuk_UI ..> 성적 : uses (Dependency) [cite: 6]
 search_sungjuk_ui ..> 성적 : uses (Dependency) [cite: 6]
+```

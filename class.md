@@ -23,12 +23,12 @@ class 성적 {
 }
 
 class Add_Sungjuk_UI {
-    <<bound>>
+    <<boundary>>
     +main(String[] args)
 }
 
 class search_sungjuk_ui {
-    <<bound>>
+    <<boundary>>
     +main(String[] args)
 }
 
